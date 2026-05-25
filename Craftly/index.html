@@ -1,0 +1,1733 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Craftly — Marketplace freelance kreatif berbasis AI."
+    />
+    <title>Craftly — Creative Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              rich: { 900: "#0F0A04", 800: "#1A1208", 700: "#2A1E0C" },
+              coral: { 400: "#F49270", 500: "#E8723D", 600: "#D85A30" },
+              cream: { 50: "#FDFAF5", 100: "#FAF4E8" },
+              sage: { 400: "#7FAD6A", 500: "#5D9347" },
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #fdfaf5;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: #0f0a04;
+        -webkit-font-smoothing: antialiased;
+      }
+      .nav-bg {
+        background: rgba(253, 250, 245, 0.94);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(15, 10, 4, 0.07);
+      }
+      .editorial {
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 0.92;
+      }
+      .mq-wrap {
+        overflow: hidden;
+      }
+      .mq-track {
+        display: flex;
+        gap: 1rem;
+        animation: mq 22s linear infinite;
+        white-space: nowrap;
+      }
+      .mq-track:hover {
+        animation-play-state: paused;
+      }
+      @keyframes mq {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .fade-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-up.vis {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .d1 {
+        transition-delay: 0.1s;
+      }
+      .d2 {
+        transition-delay: 0.2s;
+      }
+      .d3 {
+        transition-delay: 0.3s;
+      }
+      .c-card {
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+        cursor: pointer;
+      }
+      .c-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 20px 48px rgba(15, 10, 4, 0.14);
+      }
+      .pill {
+        transition: all 0.2s;
+        cursor: pointer;
+        border: 2px solid rgba(15, 10, 4, 0.1);
+      }
+      .pill:hover,
+      .pill.on {
+        background: #0f0a04;
+        color: #fdfaf5;
+        border-color: #0f0a04;
+      }
+      .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .faq-body.open {
+        max-height: 250px;
+      }
+      .faq-ico {
+        transition: transform 0.3s;
+        font-size: 1.2rem;
+        color: #9ca3af;
+      }
+      .faq-ico.open {
+        transform: rotate(45deg);
+        color: #e8723d;
+      }
+      .mob {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .mob.open {
+        max-height: 300px;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .blink {
+        animation: blink 2s ease-in-out infinite;
+      }
+      .search-i:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(232, 114, 61, 0.2);
+      }
+      .stat-sep {
+        border-left: 1px solid rgba(15, 10, 4, 0.1);
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #faf4e8;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e8723d;
+        border-radius: 3px;
+      }
+      .dot-bg {
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 0
+        );
+        background-size: 28px 28px;
+      }
+      .step-n {
+        font-size: 5rem;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: rgba(232, 114, 61, 0.12);
+        position: absolute;
+        top: -1rem;
+        left: -0.5rem;
+        line-height: 1;
+      }
+      .ring {
+        border: 2px solid #fdfaf5;
+        box-shadow: 0 0 0 1.5px rgba(232, 114, 61, 0.25);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-bg fixed top-0 left-0 right-0 z-50">
+      <div
+        class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between"
+      >
+        <a href="#" class="flex items-center gap-2 group">
+          <div
+            class="w-8 h-8 rounded-lg bg-coral-600 group-hover:bg-coral-500 transition-colors flex items-center justify-center"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 13L8 3L13 13"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 10h6"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <span
+            class="font-black text-lg text-rich-900"
+            style="letter-spacing: -0.02em"
+            >Craftly</span
+          >
+        </a>
+        <div class="hidden md:flex items-center gap-7">
+          <a
+            href="#cat"
+            class="text-sm font-semibold text-gray-500 hover:text-rich-900 transition-colors"
+            >Kategori</a
+          >
+          <a
+            href="#how"
+            class="text-sm font-semibold text-gray-500 hover:text-rich-900 transition-colors"
+            >Cara Kerja</a
+          >
+          <a
+            href="#price"
+            class="text-sm font-semibold text-gray-500 hover:text-rich-900 transition-colors"
+            >Pricing</a
+          >
+          <a
+            href="#faq"
+            class="text-sm font-semibold text-gray-500 hover:text-rich-900 transition-colors"
+            >FAQ</a
+          >
+        </div>
+        <div class="hidden md:flex items-center gap-3">
+          <button
+            onclick="openAuth('login')"
+            class="text-sm font-semibold text-gray-500 hover:text-rich-900 transition-colors"
+          >
+            Masuk
+          </button>
+          <button
+            onclick="openAuth('signup')"
+            class="bg-rich-900 hover:bg-rich-800 text-cream-50 text-sm font-black px-5 py-2.5 rounded-lg transition-all"
+          >
+            Mulai Sekarang
+          </button>
+        </div>
+        <button
+          id="mb-btn"
+          class="md:hidden p-2 text-gray-500"
+          onclick="toggleMob()"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
+          <svg
+            id="ic-o"
+            width="22"
+            height="22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M3 6h16M3 11h16M3 16h16" />
+          </svg>
+          <svg
+            id="ic-c"
+            class="hidden"
+            width="22"
+            height="22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M5 5l12 12M17 5L5 17" />
+          </svg>
+        </button>
+      </div>
+      <div id="mob-menu" class="mob md:hidden border-t border-black/5">
+        <div class="px-5 py-4 flex flex-col gap-4 bg-cream-50">
+          <a
+            href="#cat"
+            class="text-sm font-semibold text-gray-500"
+            onclick="closeMob()"
+            >Kategori</a
+          >
+          <a
+            href="#how"
+            class="text-sm font-semibold text-gray-500"
+            onclick="closeMob()"
+            >Cara Kerja</a
+          >
+          <a
+            href="#price"
+            class="text-sm font-semibold text-gray-500"
+            onclick="closeMob()"
+            >Pricing</a
+          >
+          <a
+            href="#faq"
+            class="text-sm font-semibold text-gray-500"
+            onclick="closeMob()"
+            >FAQ</a
+          >
+          <div class="pt-2 border-t border-black/5 flex gap-3">
+            <button
+              type="button"
+              onclick="openAuth('login')"
+              class="text-sm font-semibold text-gray-500 text-left"
+            >
+              Masuk
+            </button>
+            <button
+              type="button"
+              onclick="openAuth('signup')"
+              class="bg-rich-900 text-white text-sm font-black px-4 py-2 rounded-lg"
+            >
+              Mulai Sekarang
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="relative pt-32 pb-0 overflow-hidden bg-cream-50">
+      <div
+        class="absolute top-24 right-0 w-96 h-96 bg-coral-400/10 rounded-full blur-3xl pointer-events-none"
+      ></div>
+      <div class="max-w-6xl mx-auto px-5 relative z-10">
+        <div
+          class="inline-flex items-center gap-2 bg-coral-500/10 border border-coral-500/20 rounded-full px-4 py-1.5 mb-8"
+        >
+          <span class="w-2 h-2 bg-coral-500 rounded-full blink"></span>
+          <span class="text-xs font-black text-coral-600"
+            >50.000+ Kreator Siap Berkarya</span
+          >
+        </div>
+        <h1 class="editorial text-rich-900 mb-8">
+          <span class="block text-6xl sm:text-7xl md:text-8xl">Temukan</span>
+          <span class="block text-6xl sm:text-7xl md:text-8xl text-coral-500"
+            >kreator</span
+          >
+          <span class="block text-6xl sm:text-7xl md:text-8xl">impianmu.</span>
+        </h1>
+        <div class="grid lg:grid-cols-2 gap-10 items-end pb-16">
+          <div>
+            <p class="text-gray-500 text-lg leading-relaxed mb-8 max-w-lg">
+              Craftly menghubungkan brand dengan
+              <strong class="text-rich-900">kreator digital terbaik</strong> —
+              desainer, copywriter, videografer, developer — selesaikan project
+              dalam hitungan hari, bukan minggu.
+            </p>
+            <div class="flex max-w-md">
+              <input
+                class="search-i flex-1 bg-white border border-black/10 border-r-0 rounded-l-xl px-4 py-3.5 text-sm placeholder-gray-400"
+                placeholder="Cari: logo, video ads, UI/UX design..."
+              />
+              <button
+                class="bg-coral-500 hover:bg-coral-600 text-white font-black px-5 py-3.5 rounded-r-xl text-sm transition-all"
+              >
+                Cari
+              </button>
+            </div>
+            <p class="text-xs text-gray-400 mt-3">
+              Populer:
+              <a href="#" class="text-coral-500 hover:underline">Logo</a>,
+              <a href="#" class="text-coral-500 hover:underline">Video Ads</a>,
+              <a href="#" class="text-coral-500 hover:underline">UI/UX</a>,
+              <a href="#" class="text-coral-500 hover:underline">Copywriting</a>
+            </p>
+          </div>
+          <div
+            class="flex bg-white rounded-2xl border border-black/6 overflow-hidden shadow-sm"
+          >
+            <div class="flex-1 p-6 text-center">
+              <p class="text-3xl font-black text-rich-900 mb-1">50K+</p>
+              <p class="text-xs text-gray-400 font-semibold">Kreator aktif</p>
+            </div>
+            <div class="flex-1 p-6 text-center stat-sep">
+              <p class="text-3xl font-black text-coral-500 mb-1">200K+</p>
+              <p class="text-xs text-gray-400 font-semibold">Project selesai</p>
+            </div>
+            <div class="flex-1 p-6 text-center stat-sep">
+              <p class="text-3xl font-black text-rich-900 mb-1">4.9&#9733;</p>
+              <p class="text-xs text-gray-400 font-semibold">
+                Rating rata-rata
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-7 overflow-hidden" style="background: #0f0a04">
+        <div class="mq-wrap">
+          <div class="mq-track">
+            <div class="flex gap-4">
+              <div
+                class="c-card bg-cream-100 rounded-2xl p-4 flex-shrink-0 w-48 border border-black/5"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-coral-500 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  RD
+                </div>
+                <p class="font-black text-sm text-rich-900">Reza Darmawan</p>
+                <p class="text-xs text-gray-400 mb-2">Brand Designer</p>
+                <p class="text-xs font-black text-coral-500">Mulai Rp 350K</p>
+              </div>
+              <div
+                class="c-card rounded-2xl p-4 flex-shrink-0 w-48 border border-white/5"
+                style="background: #1a1208"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-yellow-400 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  SN
+                </div>
+                <p class="font-black text-sm text-white">Sinta Nuraini</p>
+                <p class="text-xs text-white/40 mb-2">UI/UX Designer</p>
+                <p class="text-xs font-black text-yellow-400">Mulai Rp 500K</p>
+              </div>
+              <div
+                class="c-card bg-coral-500 rounded-2xl p-4 flex-shrink-0 w-48"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  BP
+                </div>
+                <p class="font-black text-sm text-white">Bagas Prasetyo</p>
+                <p class="text-xs text-white/70 mb-2">Video Editor</p>
+                <p class="text-xs font-black text-white">Mulai Rp 400K</p>
+              </div>
+              <div
+                class="c-card bg-cream-100 rounded-2xl p-4 flex-shrink-0 w-48 border border-black/5"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-sage-500 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  AK
+                </div>
+                <p class="font-black text-sm text-rich-900">Aisyah Kartika</p>
+                <p class="text-xs text-gray-400 mb-2">Copywriter</p>
+                <p class="text-xs font-black text-coral-500">Mulai Rp 200K</p>
+              </div>
+              <div
+                class="c-card bg-yellow-400 rounded-2xl p-4 flex-shrink-0 w-48"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-white/30 flex items-center justify-center font-black text-xs mb-3"
+                >
+                  FH
+                </div>
+                <p class="font-black text-sm text-rich-900">Fahmi Hasan</p>
+                <p class="text-xs mb-2" style="color: rgba(26, 18, 8, 0.6)">
+                  Frontend Dev
+                </p>
+                <p class="text-xs font-black text-rich-900">Mulai Rp 750K</p>
+              </div>
+              <div
+                class="c-card bg-cream-100 rounded-2xl p-4 flex-shrink-0 w-48 border border-black/5"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-blue-500 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  DM
+                </div>
+                <p class="font-black text-sm text-rich-900">Dita Maharani</p>
+                <p class="text-xs text-gray-400 mb-2">Motion Designer</p>
+                <p class="text-xs font-black text-coral-500">Mulai Rp 600K</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div
+                class="c-card bg-cream-100 rounded-2xl p-4 flex-shrink-0 w-48 border border-black/5"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-coral-500 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  RD
+                </div>
+                <p class="font-black text-sm text-rich-900">Reza Darmawan</p>
+                <p class="text-xs text-gray-400 mb-2">Brand Designer</p>
+                <p class="text-xs font-black text-coral-500">Mulai Rp 350K</p>
+              </div>
+              <div
+                class="c-card rounded-2xl p-4 flex-shrink-0 w-48 border border-white/5"
+                style="background: #1a1208"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-yellow-400 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  SN
+                </div>
+                <p class="font-black text-sm text-white">Sinta Nuraini</p>
+                <p class="text-xs text-white/40 mb-2">UI/UX Designer</p>
+                <p class="text-xs font-black text-yellow-400">Mulai Rp 500K</p>
+              </div>
+              <div
+                class="c-card bg-coral-500 rounded-2xl p-4 flex-shrink-0 w-48"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  BP
+                </div>
+                <p class="font-black text-sm text-white">Bagas Prasetyo</p>
+                <p class="text-xs text-white/70 mb-2">Video Editor</p>
+                <p class="text-xs font-black text-white">Mulai Rp 400K</p>
+              </div>
+              <div
+                class="c-card bg-cream-100 rounded-2xl p-4 flex-shrink-0 w-48 border border-black/5"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-sage-500 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  AK
+                </div>
+                <p class="font-black text-sm text-rich-900">Aisyah Kartika</p>
+                <p class="text-xs text-gray-400 mb-2">Copywriter</p>
+                <p class="text-xs font-black text-coral-500">Mulai Rp 200K</p>
+              </div>
+              <div
+                class="c-card bg-yellow-400 rounded-2xl p-4 flex-shrink-0 w-48"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-white/30 flex items-center justify-center font-black text-xs mb-3"
+                >
+                  FH
+                </div>
+                <p class="font-black text-sm text-rich-900">Fahmi Hasan</p>
+                <p class="text-xs mb-2" style="color: rgba(26, 18, 8, 0.6)">
+                  Frontend Dev
+                </p>
+                <p class="text-xs font-black text-rich-900">Mulai Rp 750K</p>
+              </div>
+              <div
+                class="c-card bg-cream-100 rounded-2xl p-4 flex-shrink-0 w-48 border border-black/5"
+              >
+                <div
+                  class="w-9 h-9 rounded-xl bg-blue-500 flex items-center justify-center text-white font-black text-xs mb-3"
+                >
+                  DM
+                </div>
+                <p class="font-black text-sm text-rich-900">Dita Maharani</p>
+                <p class="text-xs text-gray-400 mb-2">Motion Designer</p>
+                <p class="text-xs font-black text-coral-500">Mulai Rp 600K</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cat" class="py-24">
+      <div class="max-w-6xl mx-auto px-5">
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 fade-up"
+        >
+          <div>
+            <span
+              class="text-coral-500 text-sm font-black uppercase tracking-widest"
+              >Kategori</span
+            >
+            <h2
+              class="text-4xl md:text-5xl font-black text-rich-900 mt-2 leading-tight"
+            >
+              Semua skill,<br />satu platform.
+            </h2>
+          </div>
+          <a
+            href="#"
+            class="text-sm font-black text-rich-900 border-b-2 border-coral-500 pb-0.5 hover:text-coral-500 self-start"
+            >Lihat semua &rarr;</a
+          >
+        </div>
+        <div class="flex flex-wrap gap-3 mb-10 fade-up d1" id="pills">
+          <button
+            class="pill on text-sm font-black px-5 py-2.5 rounded-full"
+            onclick="fCat(this, 'all')"
+          >
+            Semua
+          </button>
+          <button
+            class="pill text-sm font-black px-5 py-2.5 rounded-full"
+            onclick="fCat(this, 'design')"
+          >
+            &#127912; Design
+          </button>
+          <button
+            class="pill text-sm font-black px-5 py-2.5 rounded-full"
+            onclick="fCat(this, 'video')"
+          >
+            &#127909; Video
+          </button>
+          <button
+            class="pill text-sm font-black px-5 py-2.5 rounded-full"
+            onclick="fCat(this, 'writing')"
+          >
+            &#9997;&#65039; Writing
+          </button>
+          <button
+            class="pill text-sm font-black px-5 py-2.5 rounded-full"
+            onclick="fCat(this, 'dev')"
+          >
+            &#128187; Dev
+          </button>
+          <button
+            class="pill text-sm font-black px-5 py-2.5 rounded-full"
+            onclick="fCat(this, 'mktg')"
+          >
+            &#128226; Marketing
+          </button>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="sgrid">
+          <div
+            class="c-card bg-white rounded-2xl border border-black/6 overflow-hidden fade-up"
+            data-cat="design"
+          >
+            <div
+              class="h-28 bg-gradient-to-br from-coral-400 to-coral-600 flex items-center justify-center text-5xl"
+            >
+              &#127912;
+            </div>
+            <div class="p-5">
+              <p
+                class="text-xs font-black text-coral-500 uppercase tracking-wider"
+              >
+                Brand Design
+              </p>
+              <h3 class="font-black text-base text-rich-900 mt-1 mb-2">
+                Logo &amp; Brand Identity
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                Logo profesional, brand guidelines, business card, dan semua
+                aset visual brand kamu dalam satu paket.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-6 h-6 rounded-full bg-coral-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    R
+                  </div>
+                  <div
+                    class="w-6 h-6 rounded-full bg-yellow-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    +8
+                  </div>
+                </div>
+                <span class="text-xs font-black">Mulai Rp 250K</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c-card rounded-2xl border border-white/5 overflow-hidden fade-up d1"
+            data-cat="video"
+            style="background: #1a1208"
+          >
+            <div
+              class="h-28 flex items-center justify-center text-5xl"
+              style="background: #2a1e0c"
+            >
+              &#127909;
+            </div>
+            <div class="p-5">
+              <p
+                class="text-xs font-black text-yellow-400 uppercase tracking-wider"
+              >
+                Video Production
+              </p>
+              <h3 class="font-black text-base text-white mt-1 mb-2">
+                Video Iklan &amp; Reels
+              </h3>
+              <p class="text-white/40 text-xs leading-relaxed mb-4">
+                Video ads untuk Instagram, TikTok, YouTube dengan motion
+                graphics dan color grading profesional.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-6 h-6 rounded-full bg-yellow-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    B
+                  </div>
+                  <div
+                    class="w-6 h-6 rounded-full bg-blue-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    +5
+                  </div>
+                </div>
+                <span class="text-xs font-black text-yellow-400"
+                  >Mulai Rp 400K</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="c-card bg-yellow-400 rounded-2xl overflow-hidden fade-up d2"
+            data-cat="dev"
+          >
+            <div
+              class="h-28 bg-yellow-500 flex items-center justify-center text-5xl"
+            >
+              &#128187;
+            </div>
+            <div class="p-5">
+              <p
+                class="text-xs font-black uppercase tracking-wider"
+                style="color: rgba(26, 18, 8, 0.7)"
+              >
+                Development
+              </p>
+              <h3 class="font-black text-base text-rich-900 mt-1 mb-2">
+                Landing Page &amp; Web App
+              </h3>
+              <p
+                class="text-xs leading-relaxed mb-4"
+                style="color: rgba(26, 18, 8, 0.55)"
+              >
+                Landing page konversi tinggi, website company profile, dan
+                aplikasi web custom sesuai kebutuhan.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-6 h-6 rounded-full bg-white ring text-xs flex items-center justify-center text-rich-900 font-bold"
+                  >
+                    F
+                  </div>
+                  <div
+                    class="w-6 h-6 rounded-full bg-rich-700 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    +4
+                  </div>
+                </div>
+                <span class="text-xs font-black text-rich-900"
+                  >Mulai Rp 700K</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="c-card bg-white rounded-2xl border border-black/6 overflow-hidden fade-up"
+            data-cat="writing"
+          >
+            <div
+              class="h-28 bg-gradient-to-br from-green-100 to-green-300/40 flex items-center justify-center text-5xl"
+            >
+              &#9997;
+            </div>
+            <div class="p-5">
+              <p
+                class="text-xs font-black text-green-600 uppercase tracking-wider"
+              >
+                Copywriting
+              </p>
+              <h3 class="font-black text-base text-rich-900 mt-1 mb-2">
+                Konten &amp; Copywriting
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                Caption sosmed, artikel SEO, email marketing, script iklan, dan
+                copywriting landing page yang convert.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-6 h-6 rounded-full bg-sage-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    A
+                  </div>
+                  <div
+                    class="w-6 h-6 rounded-full bg-coral-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    +6
+                  </div>
+                </div>
+                <span class="text-xs font-black">Mulai Rp 150K</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c-card bg-coral-500 rounded-2xl overflow-hidden fade-up d1"
+            data-cat="design"
+          >
+            <div
+              class="h-28 bg-coral-600 flex items-center justify-center text-5xl"
+            >
+              &#128241;
+            </div>
+            <div class="p-5">
+              <p
+                class="text-xs font-black text-white/70 uppercase tracking-wider"
+              >
+                UI/UX Design
+              </p>
+              <h3 class="font-black text-base text-white mt-1 mb-2">
+                Desain Aplikasi Mobile
+              </h3>
+              <p class="text-white/60 text-xs leading-relaxed mb-4">
+                Prototype UI/UX untuk iOS &amp; Android — wireframe hingga
+                design system siap handoff ke developer.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-6 h-6 rounded-full bg-white ring text-xs flex items-center justify-center text-coral-600 font-bold"
+                  >
+                    S
+                  </div>
+                  <div
+                    class="w-6 h-6 rounded-full bg-yellow-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    +7
+                  </div>
+                </div>
+                <span class="text-xs font-black text-white">Mulai Rp 500K</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c-card bg-white rounded-2xl border border-black/6 overflow-hidden fade-up d2"
+            data-cat="mktg"
+          >
+            <div
+              class="h-28 bg-gradient-to-br from-blue-100 to-blue-300/40 flex items-center justify-center text-5xl"
+            >
+              &#128226;
+            </div>
+            <div class="p-5">
+              <p
+                class="text-xs font-black text-blue-500 uppercase tracking-wider"
+              >
+                Digital Marketing
+              </p>
+              <h3 class="font-black text-base text-rich-900 mt-1 mb-2">
+                Social Media Management
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                Kelola Instagram, TikTok, LinkedIn brand kamu — konten, jadwal
+                posting, dan strategi growth organik.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-6 h-6 rounded-full bg-blue-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    M
+                  </div>
+                  <div
+                    class="w-6 h-6 rounded-full bg-coral-400 ring text-xs flex items-center justify-center text-white font-bold"
+                  >
+                    +9
+                  </div>
+                </div>
+                <span class="text-xs font-black">Mulai Rp 300K</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="py-24 dot-bg relative" style="background: #0f0a04">
+      <div class="max-w-6xl mx-auto px-5 relative z-10">
+        <div class="text-center mb-20 fade-up">
+          <span
+            class="text-coral-400 text-sm font-black uppercase tracking-widest"
+            >Cara Kerja</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-black text-white mt-3 leading-tight"
+          >
+            Project selesai<br />dalam 60 detik setup.
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="relative fade-up">
+            <span class="step-n">01</span>
+            <div class="relative pt-14">
+              <div
+                class="w-12 h-12 rounded-2xl bg-coral-500 flex items-center justify-center mb-5"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.8"
+                >
+                  <circle cx="11" cy="8" r="4" />
+                  <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+                </svg>
+              </div>
+              <h3 class="font-black text-xl text-white mb-3">
+                Post Brief Project
+              </h3>
+              <p class="text-white/40 text-sm leading-relaxed">
+                Jelaskan kebutuhan project atau biarkan AI Brief Generator kami
+                yang merumuskannya. Tidak perlu jago nulis brief.
+              </p>
+            </div>
+          </div>
+          <div class="relative fade-up d1">
+            <span class="step-n">02</span>
+            <div class="relative pt-14">
+              <div
+                class="w-12 h-12 rounded-2xl bg-yellow-400 flex items-center justify-center mb-5"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  stroke="#0F0A04"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M11 2l2.5 7h7.5l-6 4.5 2.5 7L11 16l-6.5 4.5 2.5-7L1 9h7.5z"
+                  />
+                </svg>
+              </div>
+              <h3 class="font-black text-xl text-white mb-3">
+                AI Match Kreator
+              </h3>
+              <p class="text-white/40 text-sm leading-relaxed">
+                Dalam 60 detik, AI kami mencocokkan kamu dengan 3-5 kreator
+                terbaik sesuai kebutuhan dan budget project.
+              </p>
+            </div>
+          </div>
+          <div class="relative fade-up d2">
+            <span class="step-n">03</span>
+            <div class="relative pt-14">
+              <div
+                class="w-12 h-12 rounded-2xl bg-sage-500 flex items-center justify-center mb-5"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.8"
+                >
+                  <path d="M5 11l5 5 9-9" />
+                  <circle cx="11" cy="11" r="9" />
+                </svg>
+              </div>
+              <h3 class="font-black text-xl text-white mb-3">
+                Terima Hasil &amp; Bayar
+              </h3>
+              <p class="text-white/40 text-sm leading-relaxed">
+                Kolaborasi, revisi, setujui hasil. Pembayaran dilepas ke kreator
+                hanya setelah kamu puas. Zero risk, full control.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24">
+      <div class="max-w-6xl mx-auto px-5">
+        <div class="text-center mb-16 fade-up">
+          <span
+            class="text-coral-500 text-sm font-black uppercase tracking-widest"
+            >Testimonials</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-black text-rich-900 mt-3 leading-tight"
+          >
+            Brand &amp; kreator<br />sudah membuktikannya.
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="c-card bg-coral-500 rounded-2xl p-6 fade-up">
+            <div class="text-white/80 text-sm mb-4">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+            <p class="text-white text-sm leading-relaxed mb-6">
+              "Craftly menghemat waktu kami luar biasa. Dulu cari freelancer
+              bisa makan 2 minggu, sekarang 1 hari langsung dapat 3 kandidat top
+              yang paham brief kami."
+            </p>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-sm font-black text-white"
+              >
+                MR
+              </div>
+              <div>
+                <p class="text-sm font-black text-white">Mira Rahmawati</p>
+                <p class="text-xs text-white/60">CMO &middot; Startup Edtech</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c-card bg-cream-100 rounded-2xl p-6 border border-black/6 fade-up d1"
+          >
+            <div class="text-yellow-500 text-sm mb-4">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+              "Sebagai kreator, Craftly memberi akses ke klien premium yang
+              tidak bisa saya reach sendiri. Income saya naik 3x sejak
+              bergabung!"
+            </p>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-full bg-coral-100 flex items-center justify-center text-sm font-black text-coral-600"
+              >
+                YP
+              </div>
+              <div>
+                <p class="text-sm font-black text-rich-900">Yoga Pratama</p>
+                <p class="text-xs text-gray-400">
+                  Brand Designer &middot; Freelancer
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c-card rounded-2xl p-6 fade-up d2"
+            style="background: #1a1208"
+          >
+            <div class="text-yellow-400 text-sm mb-4">
+              &#9733;&#9733;&#9733;&#9733;&#9733;
+            </div>
+            <p class="text-white/70 text-sm leading-relaxed mb-6">
+              "Sistem escrow Craftly bikin kami tenang — bayar setelah puas.
+              Sudah 12 project dan semua delivered tepat waktu tanpa drama sama
+              sekali."
+            </p>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black text-yellow-400"
+                style="background: rgba(251, 191, 36, 0.15)"
+              >
+                AL
+              </div>
+              <div>
+                <p class="text-sm font-black text-white">Andi Lesmana</p>
+                <p class="text-xs text-white/40">
+                  Co-founder &middot; F&amp;B Brand
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="price" class="py-24 bg-cream-100">
+      <div class="max-w-6xl mx-auto px-5">
+        <div class="text-center mb-16 fade-up">
+          <span
+            class="text-coral-500 text-sm font-black uppercase tracking-widest"
+            >Pricing</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-black text-rich-900 mt-3 leading-tight"
+          >
+            Bayar hanya saat<br />kamu puas.
+          </h2>
+          <p class="text-gray-500 text-lg max-w-lg mx-auto mt-4">
+            Tidak ada biaya tersembunyi. Komisi kecil hanya dari transaksi yang
+            berhasil.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div
+            class="c-card bg-white rounded-2xl p-7 border border-black/6 fade-up"
+          >
+            <p class="font-black text-sm text-gray-400 mb-1">Basic</p>
+            <p class="font-black text-5xl text-rich-900 mb-1">Gratis</p>
+            <p class="text-gray-400 text-sm mb-7">
+              Untuk individu &amp; brand kecil
+            </p>
+            <ul class="space-y-3 mb-8 text-sm">
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">Post 2 project/bulan</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">500 kreator terverifikasi</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">Escrow payment aman</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gray-300 font-black">&#10007;</span
+                ><span class="text-gray-300">AI Brief Generator</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-gray-300 font-black">&#10007;</span
+                ><span class="text-gray-300">Priority matching</span>
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="block text-center border-2 border-black/12 text-rich-900 font-black py-3.5 rounded-xl hover:border-rich-900 transition-all text-sm"
+              >Mulai Gratis</a
+            >
+          </div>
+          <div
+            class="c-card rounded-2xl p-7 relative fade-up d1"
+            style="
+              background: #0f0a04;
+              box-shadow: 0 24px 60px rgba(15, 10, 4, 0.3);
+            "
+          >
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+              <span
+                class="bg-coral-500 text-white text-xs font-black px-5 py-1.5 rounded-full"
+                >&#10022; Paling Populer</span
+              >
+            </div>
+            <p class="font-black text-sm text-coral-400 mb-1">Pro Brand</p>
+            <div class="flex items-end gap-1 mb-1">
+              <span class="font-black text-5xl text-white">Rp 199K</span
+              ><span class="text-white/40 text-sm mb-2">/bln</span>
+            </div>
+            <p class="text-white/40 text-sm mb-7">
+              Ditagih tahunan &mdash; hemat 30%
+            </p>
+            <ul class="space-y-3 mb-8 text-sm">
+              <li class="flex gap-3">
+                <span class="text-coral-400 font-black">&#10003;</span
+                ><span class="text-white/80">Post unlimited project</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-400 font-black">&#10003;</span
+                ><span class="text-white/80">50K+ kreator</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-400 font-black">&#10003;</span
+                ><span class="text-white/80">AI Brief Generator</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-400 font-black">&#10003;</span
+                ><span class="text-white/80"
+                  >Priority AI matching (60 dtk)</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-400 font-black">&#10003;</span
+                ><span class="text-white/80">Dedicated account manager</span>
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="block text-center bg-coral-500 hover:bg-coral-400 text-white font-black py-3.5 rounded-xl transition-all text-sm"
+              >Coba 14 Hari Gratis &rarr;</a
+            >
+          </div>
+          <div
+            class="c-card bg-white rounded-2xl p-7 border border-black/6 fade-up d2"
+          >
+            <p class="font-black text-sm text-gray-400 mb-1">Enterprise</p>
+            <p class="font-black text-5xl text-rich-900 mb-1">Custom</p>
+            <p class="text-gray-400 text-sm mb-7">
+              Untuk agensi &amp; korporat
+            </p>
+            <ul class="space-y-3 mb-8 text-sm">
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">Semua fitur Pro</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">White-label platform</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">Custom kontrak &amp; NDA</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">Invoice &amp; NET30 payment</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-coral-500 font-black">&#10003;</span
+                ><span class="text-gray-600">SLA &amp; support 24/7</span>
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="block text-center border-2 border-black/12 text-rich-900 font-black py-3.5 rounded-xl hover:border-rich-900 transition-all text-sm"
+              >Hubungi Sales &rarr;</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-24">
+      <div class="max-w-3xl mx-auto px-5">
+        <div class="text-center mb-14 fade-up">
+          <span
+            class="text-coral-500 text-sm font-black uppercase tracking-widest"
+            >FAQ</span
+          >
+          <h2 class="text-4xl font-black text-rich-900 mt-3 leading-tight">
+            Ada pertanyaan?<br />Kami punya jawabannya.
+          </h2>
+        </div>
+        <div class="space-y-3">
+          <div
+            class="bg-cream-100 rounded-xl border border-black/6 overflow-hidden"
+          >
+            <button
+              class="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+              onclick="tFaq(this)"
+              aria-expanded="false"
+            >
+              <span class="font-black text-rich-900 text-sm"
+                >Bagaimana cara AI matching bekerja?</span
+              ><span class="faq-ico">+</span>
+            </button>
+            <div class="faq-body">
+              <p class="text-gray-500 text-sm leading-relaxed px-6 pb-5">
+                AI kami menganalisis brief kamu — kategori, budget, timeline,
+                gaya visual — lalu mencocokkannya dengan portofolio 50.000+
+                kreator. Hasilnya 3-5 rekomendasi terbaik dalam 60 detik.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-cream-100 rounded-xl border border-black/6 overflow-hidden"
+          >
+            <button
+              class="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+              onclick="tFaq(this)"
+              aria-expanded="false"
+            >
+              <span class="font-black text-rich-900 text-sm"
+                >Apakah dana saya aman jika kreator tidak deliver?</span
+              ><span class="faq-ico">+</span>
+            </button>
+            <div class="faq-body">
+              <p class="text-gray-500 text-sm leading-relaxed px-6 pb-5">
+                100% aman. Escrow kami menahan dana hingga kamu menyatakan puas.
+                Jika kreator tidak deliver sesuai brief, kamu berhak full refund
+                tanpa proses berbelit.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-cream-100 rounded-xl border border-black/6 overflow-hidden"
+          >
+            <button
+              class="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+              onclick="tFaq(this)"
+              aria-expanded="false"
+            >
+              <span class="font-black text-rich-900 text-sm"
+                >Berapa komisi Craftly?</span
+              ><span class="faq-ico">+</span>
+            </button>
+            <div class="faq-body">
+              <p class="text-gray-500 text-sm leading-relaxed px-6 pb-5">
+                Pengguna Basic dikenakan 8% dari total transaksi, pengguna Pro
+                hanya 3%. Tidak ada biaya listing atau biaya tersembunyi sebelum
+                transaksi berhasil.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-cream-100 rounded-xl border border-black/6 overflow-hidden"
+          >
+            <button
+              class="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+              onclick="tFaq(this)"
+              aria-expanded="false"
+            >
+              <span class="font-black text-rich-900 text-sm"
+                >Bagaimana daftar sebagai kreator?</span
+              ><span class="faq-ico">+</span>
+            </button>
+            <div class="faq-body">
+              <p class="text-gray-500 text-sm leading-relaxed px-6 pb-5">
+                Daftar gratis — upload portofolio, isi profil skill, tunggu
+                verifikasi 1-3 hari kerja. Setelah verified, langsung terima
+                tawaran project dari sistem AI matching kami.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-cream-100 rounded-xl border border-black/6 overflow-hidden"
+          >
+            <button
+              class="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+              onclick="tFaq(this)"
+              aria-expanded="false"
+            >
+              <span class="font-black text-rich-900 text-sm"
+                >Berapa lama rata-rata project selesai?</span
+              ><span class="faq-ico">+</span>
+            </button>
+            <div class="faq-body">
+              <p class="text-gray-500 text-sm leading-relaxed px-6 pb-5">
+                Logo design 2-3 hari, landing page 3-7 hari, video production
+                5-10 hari. Setiap kreator mencantumkan estimasi delivery time
+                akurat sebelum kamu setujui deal.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 px-5 bg-coral-500 relative overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-10"
+        style="
+          background-image: radial-gradient(
+            circle at 1px 1px,
+            white 1px,
+            transparent 0
+          );
+          background-size: 28px 28px;
+        "
+      ></div>
+      <div
+        class="absolute -top-20 -right-20 w-80 h-80 bg-yellow-400/20 rounded-full blur-3xl"
+      ></div>
+      <div class="max-w-4xl mx-auto text-center relative fade-up">
+        <h2
+          class="font-black text-5xl md:text-6xl text-white mb-5 leading-tight"
+          style="letter-spacing: -0.02em"
+        >
+          Siap wujudkan<br />project impianmu?
+        </h2>
+        <p class="text-white/75 text-xl mb-10 max-w-xl mx-auto">
+          Bergabung dengan 200.000+ brand yang sudah percayakan project kreatif
+          mereka kepada kreator terbaik di Craftly.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
+        >
+          <button
+            type="button"
+            onclick="openAuth('login')"
+            class="w-full sm:w-auto bg-white text-rich-900 font-black px-9 py-4 rounded-xl hover:bg-cream-100 transition-all"
+          >
+            Post Project Sekarang &rarr;
+          </button>
+          <button
+            type="button"
+            onclick="openAuth('signup')"
+            class="w-full sm:w-auto border-2 border-white/30 text-white font-black px-9 py-4 rounded-xl hover:bg-white/10 transition-all"
+          >
+            Daftar Sebagai Kreator
+          </button>
+        </div>
+        <p class="text-white/50 text-sm">
+          &#10003; Gratis untuk mulai &nbsp;&middot;&nbsp; &#10003; Bayar
+          setelah puas &nbsp;&middot;&nbsp; &#10003; 50K+ kreator siap
+        </p>
+      </div>
+    </section>
+
+    <footer
+      style="background: #0f0a04"
+      class="border-t border-white/5 py-14 px-5"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-5 gap-10 mb-12">
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-2 mb-5">
+              <div
+                class="w-7 h-7 rounded-lg bg-coral-500 flex items-center justify-center"
+              >
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M3 13L8 3L13 13"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M5 10h6"
+                    stroke="white"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <span
+                class="font-black text-white text-lg"
+                style="letter-spacing: -0.02em"
+                >Craftly</span
+              >
+            </div>
+            <p class="text-white/30 text-sm leading-relaxed max-w-xs mb-5">
+              Platform marketplace kreatif berbasis AI yang menghubungkan brand
+              dengan kreator digital terbaik Indonesia.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm font-black text-white mb-4">Platform</p>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="#cat"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Kategori</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#price"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >AI Brief Generator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Craftly Pro</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-sm font-black text-white mb-4">Perusahaan</p>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Tentang Kami</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Blog Kreator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Karir</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Press Kit</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-sm font-black text-white mb-4">Legal</p>
+            <ul class="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Kebijakan Privasi</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Syarat &amp; Ketentuan</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Kebijakan Kreator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/30 hover:text-white/70 transition-colors"
+                  >Cookie Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-white/5 pt-7 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-white/20 text-sm">
+            &copy; 2025 Craftly Technologies Pte. Ltd. All rights reserved.
+          </p>
+          <div class="flex items-center gap-2 text-white/20 text-sm">
+            <span class="w-2 h-2 bg-coral-500 rounded-full blink"></span>All
+            systems operational
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMob() {
+        var m = document.getElementById("mob-menu"),
+          o = document.getElementById("ic-o"),
+          c = document.getElementById("ic-c"),
+          b = document.getElementById("mb-btn"),
+          open = m.classList.contains("open");
+        m.classList.toggle("open");
+        o.classList.toggle("hidden");
+        c.classList.toggle("hidden");
+        b.setAttribute("aria-expanded", (!open).toString());
+      }
+      function closeMob() {
+        document.getElementById("mob-menu").classList.remove("open");
+        document.getElementById("ic-o").classList.remove("hidden");
+        document.getElementById("ic-c").classList.add("hidden");
+        document
+          .getElementById("mb-btn")
+          .setAttribute("aria-expanded", "false");
+      }
+      function tFaq(btn) {
+        var body = btn.nextElementSibling,
+          ico = btn.querySelector(".faq-ico"),
+          open = body.classList.contains("open");
+        document.querySelectorAll(".faq-body").forEach(function (b) {
+          b.classList.remove("open");
+        });
+        document.querySelectorAll(".faq-ico").forEach(function (i) {
+          i.classList.remove("open");
+          i.textContent = "+";
+        });
+        if (!open) {
+          body.classList.add("open");
+          ico.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      }
+      function fCat(btn, cat) {
+        document.querySelectorAll("#pills .pill").forEach(function (p) {
+          p.classList.remove("on");
+        });
+        btn.classList.add("on");
+        document.querySelectorAll("#sgrid>div").forEach(function (c) {
+          c.style.opacity =
+            cat === "all" || c.dataset.cat === cat ? "1" : "0.2";
+          c.style.transition = "opacity .25s";
+        });
+      }
+      var obs = new IntersectionObserver(
+        function (e) {
+          e.forEach(function (x) {
+            if (x.isIntersecting) {
+              x.target.classList.add("vis");
+              obs.unobserve(x.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll(".fade-up").forEach(function (el) {
+        obs.observe(el);
+      });
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          var t = this.getAttribute("href");
+          if (t === "#") return;
+          var el = document.querySelector(t);
+          if (el) {
+            e.preventDefault();
+            window.scrollTo({
+              top: el.getBoundingClientRect().top + window.scrollY - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+      var nav = document.querySelector("nav");
+      window.addEventListener("scroll", function () {
+        nav.style.boxShadow =
+          window.scrollY > 20 ? "0 4px 24px rgba(15,10,4,.1)" : "none";
+      });
+      function openAuth(mode) {
+        var overlay = document.getElementById("auth-overlay"),
+          loginTab = document.getElementById("auth-login-tab"),
+          signUpTab = document.getElementById("auth-signup-tab"),
+          title = document.getElementById("auth-title"),
+          submit = document.getElementById("auth-submit"),
+          extra = document.getElementById("auth-extra");
+        overlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        if (mode === "signup") {
+          title.textContent = "Daftar Akun Craftly";
+          loginTab.classList.remove("bg-rich-900", "text-cream-50");
+          loginTab.classList.add("text-rich-900");
+          signUpTab.classList.add("bg-rich-900", "text-cream-50");
+          signUpTab.classList.remove("text-rich-900");
+          submit.textContent = "Daftar Sekarang";
+          extra.classList.remove("hidden");
+        } else {
+          title.textContent = "Masuk ke Craftly";
+          loginTab.classList.add("bg-rich-900", "text-cream-50");
+          loginTab.classList.remove("text-rich-900");
+          signUpTab.classList.remove("bg-rich-900", "text-cream-50");
+          signUpTab.classList.add("text-rich-900");
+          submit.textContent = "Masuk";
+          extra.classList.add("hidden");
+        }
+      }
+      function closeAuth() {
+        document.getElementById("auth-overlay").classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+      function submitAuth() {
+        alert("Demo: fitur autentikasi tidak terhubung.");
+        closeAuth();
+      }
+    </script>
+    <div
+      id="auth-overlay"
+      class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center px-4 py-10"
+    >
+      <div
+        class="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl overflow-hidden"
+      >
+        <button
+          type="button"
+          onclick="closeAuth()"
+          class="absolute right-4 top-4 text-gray-500 hover:text-rich-900 text-2xl leading-none"
+        >
+          &times;
+        </button>
+        <div class="p-8">
+          <div class="flex gap-3 mb-8">
+            <button
+              id="auth-login-tab"
+              type="button"
+              onclick="openAuth('login')"
+              class="flex-1 rounded-full border border-black/10 px-4 py-3 font-black bg-rich-900 text-cream-50"
+            >
+              Masuk
+            </button>
+            <button
+              id="auth-signup-tab"
+              type="button"
+              onclick="openAuth('signup')"
+              class="flex-1 rounded-full border border-black/10 px-4 py-3 font-black text-rich-900"
+            >
+              Daftar
+            </button>
+          </div>
+          <h2 id="auth-title" class="text-3xl font-black text-rich-900 mb-6">
+            Masuk ke Craftly
+          </h2>
+          <form id="auth-form" action="#" class="space-y-4">
+            <div>
+              <label
+                class="text-xs font-black uppercase tracking-wider text-gray-500"
+                >Email</label
+              ><input
+                id="auth-email"
+                type="email"
+                placeholder="Email kamu"
+                class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3 text-sm"
+              />
+            </div>
+            <div>
+              <label
+                class="text-xs font-black uppercase tracking-wider text-gray-500"
+                >Password</label
+              ><input
+                id="auth-password"
+                type="password"
+                placeholder="Password"
+                class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3 text-sm"
+              />
+            </div>
+            <div id="auth-extra" class="hidden">
+              <label
+                class="text-xs font-black uppercase tracking-wider text-gray-500"
+                >Nama Lengkap</label
+              ><input
+                type="text"
+                placeholder="Nama lengkap"
+                class="mt-2 w-full rounded-2xl border border-black/10 px-4 py-3 text-sm"
+              />
+            </div>
+            <button
+              id="auth-submit"
+              type="button"
+              onclick="submitAuth()"
+              class="w-full bg-rich-900 text-cream-50 rounded-2xl py-3 font-black text-sm"
+            >
+              Masuk
+            </button>
+          </form>
+          <p class="text-xs text-gray-400 mt-4">
+            Dengan melanjutkan, kamu setuju dengan
+            <a href="#" class="text-coral-500">Syarat &amp; Ketentuan</a>
+            Craftly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
