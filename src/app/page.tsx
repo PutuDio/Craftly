@@ -8,23 +8,28 @@ import Pricing from '@/components/Pricing'
 import FAQ from '@/components/FAQ'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
+import AuthModal from '@/components/AuthModal'
 import { SearchProvider } from '@/lib/search-store'
+import { AuthProvider } from '@/lib/auth-store'
 
 export default function Home() {
   return (
-    <main>
-      <Navigation />
-      <SearchProvider>
-        <Hero />
-        <Kategori />
-      </SearchProvider>
-      <CreatorMarquee />
-      <CaraKerja />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
-      <Footer />
-    </main>
+    <AuthProvider>
+      <main>
+        <Navigation />
+        <SearchProvider>
+          <Hero />
+          <Kategori />
+        </SearchProvider>
+        <CreatorMarquee />
+        <CaraKerja />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <CTA />
+        <Footer />
+        <AuthModal />
+      </main>
+    </AuthProvider>
   )
 }

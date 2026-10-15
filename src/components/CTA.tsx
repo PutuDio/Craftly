@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useAuth } from '@/lib/auth-store'
 
 const guarantees = [
   'Gratis untuk mulai',
@@ -10,6 +10,8 @@ const guarantees = [
 ]
 
 export default function CTA() {
+  const { openAuth } = useAuth()
+
   return (
     <section id="mulai" className="scroll-mt-24 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,18 +33,20 @@ export default function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="#kategori"
+            <button
+              type="button"
+              onClick={() => openAuth({ mode: 'register', role: 'client' })}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-accent text-ink font-semibold transition-colors hover:bg-white"
             >
               Post Project Sekarang <span aria-hidden>→</span>
-            </Link>
-            <Link
-              href="#kategori"
+            </button>
+            <button
+              type="button"
+              onClick={() => openAuth({ mode: 'register', role: 'creator' })}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/40 font-semibold transition-colors hover:bg-white hover:text-ink"
             >
               Daftar Sebagai Kreator
-            </Link>
+            </button>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mt-10 text-sm text-white/70">
