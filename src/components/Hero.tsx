@@ -110,11 +110,11 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="bg-cloud rounded-[45px] p-6 sm:p-10">
+            <div className="bg-cloud rounded-card p-6 sm:p-10">
               <div className="absolute -top-5 -left-2 sm:-left-6 z-10 bg-accent rounded-2xl px-4 py-2 font-semibold shadow-lg rotate-[-4deg]">
                 AI Match 60 dtk
               </div>
-              <div className="absolute -bottom-5 -right-2 sm:-right-5 z-10 bg-ink text-white rounded-2xl px-4 py-2 font-semibold shadow-lg rotate-[3deg]">
+              <div className="absolute -bottom-5 -right-2 sm:-right-5 z-10 bg-ink text-white rounded-2xl px-4 py-2 font-semibold shadow-lg rotate-3">
                 Escrow Aman
               </div>
 

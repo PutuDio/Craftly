@@ -20,7 +20,7 @@ export default function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="rounded-[45px] bg-ink text-white px-8 py-16 sm:px-16 text-center"
+          className="rounded-card bg-ink text-white px-8 py-16 sm:px-16 text-center"
         >
           <h2 className="text-3xl sm:text-4xl font-bold leading-tight mb-5">
             Siap wujudkan

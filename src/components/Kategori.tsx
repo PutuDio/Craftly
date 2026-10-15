@@ -177,7 +177,7 @@ export default function Kategori() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="flex flex-col rounded-[45px] border border-ink/10 bg-white p-8 transition-shadow hover:shadow-xl hover:shadow-ink/5"
+                className="flex flex-col rounded-card border border-ink/10 bg-white p-8 transition-shadow hover:shadow-xl hover:shadow-ink/5"
               >
                 <div className="flex items-start justify-between mb-6">
                   <span className="w-16 h-16 rounded-2xl bg-cloud flex items-center justify-center text-3xl">
@@ -214,7 +214,7 @@ export default function Kategori() {
             ))}
           </div>
         ) : (
-          <div className="rounded-[45px] bg-cloud px-8 py-16 text-center">
+          <div className="rounded-card bg-cloud px-8 py-16 text-center">
             <p className="text-lg font-semibold">
               Belum ada jasa untuk “{query || filters.find((f) => f.key === active)?.label}”.
             </p>

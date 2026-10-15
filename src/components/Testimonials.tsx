@@ -49,7 +49,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="flex flex-col rounded-[45px] border border-ink/10 bg-cloud p-10"
+              className="flex flex-col rounded-card border border-ink/10 bg-cloud p-10"
             >
               <div className="text-accent text-xl tracking-widest mb-6" aria-label="5 dari 5 bintang">
                 ★★★★★

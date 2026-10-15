@@ -90,7 +90,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className={`flex flex-col rounded-[45px] p-10 ${
+              className={`flex flex-col rounded-card p-10 ${
                 plan.highlighted
                   ? 'bg-ink text-white lg:-mt-4'
                   : 'border border-ink/10 bg-cloud'

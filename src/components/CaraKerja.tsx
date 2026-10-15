@@ -54,7 +54,7 @@ export default function CaraKerja() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="flex flex-col rounded-[45px] bg-ink text-white p-10"
+              className="flex flex-col rounded-card bg-ink text-white p-10"
             >
               <span className="w-16 h-16 rounded-2xl bg-accent text-ink flex items-center justify-center text-xl font-bold mb-8">
                 {step.number}
